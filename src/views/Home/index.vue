@@ -3,6 +3,7 @@
     <h3>this is Home View</h3> 
     <div>store control</div>
     <ul>
+      <li>from App ==== location  {{location}} ----- fromName {{fromName}}</li>
       <li>ref {{count}} <button @click="incCount">incCount</button></li>
       <li>selfnum {{selfnum}} <button @click="incSelf">incSelf</button></li>
       <li>store  state  arrs : {{list.length}} ----- </li>
@@ -19,7 +20,7 @@
   </div>
 </template>
 <script>
-import {computed,onMounted,ref, watch} from 'vue'
+import {computed,onMounted,ref, watch,inject} from 'vue'
 import {useRoute, useRouter} from 'vue-router'
 import {mapGetters,mapActions,useStore} from 'vuex'
 export default {
@@ -34,11 +35,16 @@ export default {
   
     const router = useRouter()
     const route = useRoute()
+
     console.log(props)
     console.log(context)
     console.log(context.attrs)
     console.log(context.slots)
     console.log(context.emit)
+  const location = inject('location')
+  const fromName = inject('name')
+
+
     const store = useStore()
     console.log(store)
     const count = ref(0)
@@ -51,6 +57,8 @@ export default {
       })
       const selfnum = ref(0)
     return {
+      location,
+      fromName,
       count,
       incCount:()=>count.value++,
       selfnum,

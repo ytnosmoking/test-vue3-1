@@ -3,8 +3,8 @@
 import { defineAsyncComponent } from 'vue'
 
 
-// export const loadView = (name) => defineAsyncComponent(() => import(`/@/views/${name}/index.vue`))
-export const loadView = (name) => () => import(`/@/views/${name}/index.vue`)
+export const loadView = (name) => defineAsyncComponent(() => import(`/@/views/${name}/index.vue`))
+// export const loadView = (name) => () => import(`/@/views/${name}/index.vue`)
 export const getItem = (key) => {
   const val = localStorage.getItem(key)
   return val ? JSON.parse(val) : ''
